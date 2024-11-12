@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Client Information Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px 25px 40px 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* Form Styles */
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            outline-color: #4CAF50;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Loading Animation */
+        .loading {
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
+
+        .loading div {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            margin: 0 2px;
+            background-color: #4CAF50;
+            border-radius: 50%;
+            animation: loading 1s infinite ease-in-out;
+        }
+
+        .loading div:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+
+        .loading div:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+
+        @keyframes loading {
+            0%, 80%, 100% {
+                transform: scale(0);
+            }
+            40% {
+                transform: scale(1);
+            }
+        }
+
+        /* Response Styles */
+        .response {
+            margin-top: 30px;
+        }
+
+        .email-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .email-card h3 {
+            margin-top: 0;
+            color: #333;
+            font-size: 20px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        .email-card .email-subject {
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: #4CAF50;
+        }
+
+        .email-card .email-body {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 16px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .no-email {
+            font-size: 18px;
+            color: #d9534f;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .error-message {
+            color: #d9534f;
+            font-size: 18px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* Media Query */
+        @media (max-width: 600px) {
+            .form-group {
+                flex-direction: column;
+            }
+
+            button {
+                font-size: 16px;
+            }
+
+            .email-card {
+                padding: 15px;
+            }
+
+            .email-card h3 {
+                font-size: 18px;
+            }
+
+            .email-card .email-subject {
+                font-size: 16px;
+            }
+
+            .email-card .email-body {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Client Information Form</h2>
+    <form id="client-form">
+        <div class="form-group">
+            <label for="firstName">Name</label>
+            <input type="text" id="firstName" name="firstName" required value="John">
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" required value="Smith">
+        </div>
+        <div class="form-group">
+            <label for="dob">Date of Birth</label>
+            <input type="date" id="dob" name="dob" required value="1985-04-12">
+        </div>
+        <div class="form-group">
+            <label for="country">Country</label>
+            <input type="text" id="country" name="country" required value="USA">
+        </div>
+        <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" required value="New York">
+        </div>
+        <div class="form-group">
+            <label for="lastContact">Date of Last Contact</label>
+            <input type="date" id="lastContact" name="lastContact" required value="2024-11-01">
+        </div>
+        <div class="form-group">
+            <label for="companyName">Company Name</label>
+            <input type="text" id="companyName" name="companyName" required value="Smith Electronics Inc.">
+        </div>
+        <div class="form-group">
+            <label for="companyIndustry">Company Industry</label>
+            <input type="text" id="companyIndustry" name="companyIndustry" required value="Consumer Electronics">
+        </div>
+        <div class="form-group">
+            <label for="numWorkers">Number of Workers</label>
+            <input type="number" id="numWorkers" name="numWorkers" required value="120">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required value="john.smith@smielectronics.com">
+        </div>
+        <div class="form-group">
+            <label for="wishes">Wishes About the Service</label>
+            <textarea id="wishes" name="wishes" rows="4" required>Interested in increasing digital ad performance and boosting social media engagement.</textarea>
+        </div>
+        <div class="form-group">
+            <label for="language">Client Language</label>
+            <input type="text" id="language" name="language" required value="English">
+        </div>
+        <div class="form-group">
+            <label for="competitors">Company Competitors</label>
+            <input type="text" id="competitors" name="competitors" required value="TechWave, SmartGadgets Corp.">
+        </div>
+        <div class="form-group">
+            <label for="chat">Short Chat</label>
+            <textarea id="chat" name="chat" rows="6" required>Client: "We need a strategy to enhance our online visibility."
+Manager: "We can focus on targeted ads and SEO. Does that sound good to you?"
+Client: "Yes, let's start with that."</textarea>
+        </div>
+        <button type="submit">Send</button>
+    </form>
+    <div class="loading" id="loading">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="response" id="response">
+        <!-- Response data will be displayed here -->
+    </div>
+</div>
+<script>
+    const form = document.getElementById('client-form');
+    const loading = document.getElementById('loading');
+    const responseDiv = document.getElementById('response');
+
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        loading.style.display = 'block';
+        responseDiv.innerHTML = '';
+        const formData = new FormData(form);
+        const data = {};
+        formData.forEach(function (value, key) {
+            data[key] = value;
+        });
+
+        fetch('http://37.27.26.251:4999/mail-request', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+            .then(function (response) {
+                if (response.status === 429) {
+                    loading.style.display = 'none';
+                    responseDiv.innerHTML = '<p class="error-message">Limit per day exceeded. Please try again later.</p>';
+                    return Promise.reject('Limit per day exceeded');
+                } else if (!response.ok) {
+                    loading.style.display = 'none';
+                    responseDiv.innerHTML = '<p class="error-message">An error occurred: ' + response.statusText + '</p>';
+                    return Promise.reject(response.statusText);
+                }
+                return response.json().then(function (data) {
+                    loading.style.display = 'none';
+                    displayResponse(data);
+                });
+            })
+            .catch(function (error) {
+                console.error('Error:', error);
+                // Error message already displayed above; no need to display it again here
+            });
+    });
+
+    function displayResponse(data) {
+        if (data.emails && data.emails.length > 0) {
+            data.emails.forEach(function (emailContent, index) {
+                const emailDiv = document.createElement('div');
+                emailDiv.className = 'email-card';
+
+                // Split the email content into subject and body
+                const lines = emailContent.split('\n');
+                let subjectLine = '';
+                let bodyLines = [];
+                let subjectFound = false;
+
+                for (let i = 0; i < lines.length; i++) {
+                    if (!subjectFound && lines[i].startsWith('Subject:')) {
+                        subjectLine = lines[i].replace('Subject:', '').trim();
+                        subjectFound = true;
+                    } else {
+                        bodyLines.push(lines[i]);
+                    }
+                }
+
+                const emailHeader = document.createElement('h3');
+                emailHeader.textContent = 'Email ' + (index + 1);
+
+                const emailSubject = document.createElement('div');
+                emailSubject.className = 'email-subject';
+                emailSubject.textContent = subjectLine;
+
+                const emailBody = document.createElement('div');
+                emailBody.className = 'email-body';
+                emailBody.textContent = bodyLines.join('\n').trim();
+
+                emailDiv.appendChild(emailHeader);
+                emailDiv.appendChild(emailSubject);
+                emailDiv.appendChild(emailBody);
+                responseDiv.appendChild(emailDiv);
+            });
+        } else if (data.no_email_explanation) {
+            const explanation = document.createElement('p');
+            explanation.className = 'no-email';
+            explanation.textContent = data.no_email_explanation;
+            responseDiv.appendChild(explanation);
+        } else {
+            responseDiv.innerHTML = '<p>No emails or explanation provided.</p>';
+        }
+    }
+</script>
+</body>
+</html>
